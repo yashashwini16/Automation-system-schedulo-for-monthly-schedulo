@@ -1,0 +1,42 @@
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+
+h5{
+    font-size: 15px;
+    text-align: center;
+}
+
+.excel button{
+    float: right;
+    background-color: green;
+    color: white;
+}
+.excel button img{
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width:600px) {
+    .row .ctable{
+        overflow: scroll;
+    }
+}
+
+th, td {
+    /* other styles for table cells */
+    width: 200px; /* set a width to the cells */
+  }
+  
+  .truncate {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  .truncate a{
+    // overflow: hidden;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
+  }

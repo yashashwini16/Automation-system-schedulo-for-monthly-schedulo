@@ -1,0 +1,118 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" position="end" mode="over">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" mat-icon-button class="example-icon atclose" (click)="drawer.toggle()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <div *ngIf="currentUser == null" class="col-md-12">
+                <div class="col-md-12 mt-2">
+                    <a routerLink="login">
+                        <button mat-raised-button>Login</button>
+                    </a>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <a routerLink="signup">
+                        <button mat-raised-button>Signup</button>
+                    </a>
+                </div>
+            </div>
+            <div *ngIf="currentUser" class="col-md-12">
+                <div class="col-md-12 mt-2">
+                    <a routerLink="dashboard">
+                        <button mat-raised-button>Home</button>
+                    </a>
+                </div>
+                <div class="col-md-12 mt-2">
+                <a class="m-2" *ngIf="currentUser.authorities[0].authority === 'EDUCATOR'" routerLink="add-courses">
+                    <button mat-raised-button class="example-icon favorite-icon">
+                        Monthly Educator Preference
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <a class="m-2" *ngIf="currentUser.authorities[0].authority === 'IBPO'" routerLink="upload">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Upload Updated Excel
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <a class="m-2" *ngIf="currentUser.authorities[0].authority === 'IBPO' || currentUser.authorities[0].authority === 'SCHEDULO'" routerLink="report">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Report
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <a (click)="logout()">
+                        <button mat-raised-button>Logout</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <p>
+            <mat-toolbar color="primary">
+                <button mat-icon-button class="example-icon">
+                    <mat-icon>calendar_month</mat-icon>
+                </button>
+                <a routerLink="/dashboard">
+                    <span>Schedulo</span>
+                </a>
+                <span class="example-spacer"></span>
+
+                <button type="button" mat-icon-button class="example-icon atdrawer" (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <div *ngIf="currentUser == null" class="menu">
+                    <a routerLink="login" class="m-2">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Login
+                        </button>
+                    </a>
+                    <a routerLink="signup">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Signup
+                        </button>
+                    </a>
+                </div>
+                <div *ngIf="currentUser" class="menu">
+                    <a  routerLink="dashboard" class="m-2">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Dashboard
+                        </button>
+                    </a>
+                    
+                    <a class="m-2" *ngIf="currentUser.authorities[0].authority === 'EDUCATOR'" routerLink="add-courses">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Monthly Educator Preference
+                        </button>
+                    </a>
+                    <a class="m-2" *ngIf="currentUser.authorities[0].authority === 'IBPO'" routerLink="upload">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Upload Updated Excel
+                        </button>
+                    </a>
+                    <a class="m-2" *ngIf="currentUser.authorities[0].authority === 'IBPO' || currentUser.authorities[0].authority === 'SCHEDULO'" routerLink="report">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Report
+                        </button>
+                    </a>
+                    <a (click)="logout()" class="m-2">
+                        <button mat-raised-button class="example-icon favorite-icon">
+                            Logout
+                        </button>
+                    </a>
+                </div>
+            </mat-toolbar>
+        </p>
+        <div style="margin-top: 80px; width: 100%;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-drawer-container>
